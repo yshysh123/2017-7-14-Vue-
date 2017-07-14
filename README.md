@@ -55,27 +55,39 @@ expression是一个返回值为bool值的表达式，表达式是一个bool属�
       
     </div>
     
+    
   <script scr = 'js/vue.js'></script>
+  
   
   <script>
   
+  
     new Vue({
+    
     
       el:'#app',
       
+      
       data:{
+      
       
         yes:true,
         
+       
         no:false,
+        
         
       }
       
+      
     })
+    
     
   </script>
   
+  
   </body>
+  
   
 </html>
 
