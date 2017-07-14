@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="page-top">
+	        <div class="page-content">
+	            <h2>任务计划列表</h2>
+	        </div>
+	    </div>
+	    <div class="main">
+	        <h3 class="big-title">添加任务：</h3>
+	        <!--.enter 回车键 其他键都不行-->
+	        <input 
+	        	placeholder="例如：吃饭睡觉打豆豆；    提示：+回车即可添加任务" 
+	        	class="task-input" 
+	        	type="text"
+	        	v-model="todo"
+	        	v-on:keyup.enter="addTodo"
+	        />
+	        <ul class="task-count" v-show="list.length">
+	            <li>
+	            	<!--模板里面不推荐写逻辑 使用计算属性-->
+	            	{{noCheckedLength}}个任务未完成</li>
+	            <li class="action">
+	                <a class="active" href="#all">所有任务</a>
+	                <a href="#unfinished">未完成的任务</a>
+	                <a href="#finished">完成的任务</a>
+	            </li>
+	        </ul>
+	        <h3 class="big-title">任务列表：</h3>
+	        <div class="tasks">
+	        	<!--文字被渲染，根据css的display为none还是block-->
+	            <span class="no-task-tip" v-show="!list.length">还没有添加任何任务</span>
+	            <ul class="todo-list">
+	            	<!--渲染list数据 v-for是循环 相当于原生的for循环-->
+	                <li class="todo" :class="{completed:item.isChecked,editing:item==edtorTodos}" v-for="item in filteredList"> 
+	                    <div class="view">
+	                        <input class="toggle" type="checkbox" v-model="item.isChecked"/>
+	                     	<!--双{{}}里面是HTML内容 渲染HTML数据-->
+	                        <label @dblclick="edtorTodo(item)">{{ item.title }}</label>  
+	                        <button class="destroy" @click="deleteTodo(item)"></button>
+	                    </div>
+	                    <!--v-model用在一些用户交互的表单控件上-->
+	                    <input 
+	                    	v-foucs="edtorTodos===item" 
+	                    	class="edit" 
+	                    	type="text" 
+	                    	v-model="item.title"
+	                    	@blur="edtorTodoed(item)"
+	                    	@keyup.13="edtorTodoed(item)"
+	                    	@keyup.esc="cancelTodo(item)"
+	                    />
+	                </li>
+	            </ul>
+	        </div>
+	    </div>
+	    <script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>
