@@ -55,8 +55,6 @@ expression是一个返回值为bool值的表达式，表达式是一个bool属�
       
     </div>
     
-  </body>
-  
   <script scr = 'js/vue.js'></script>
   
   <script>
@@ -76,6 +74,8 @@ expression是一个返回值为bool值的表达式，表达式是一个bool属�
     })
     
   </script>
+  
+  </body>
   
 </html>
 
